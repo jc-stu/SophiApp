@@ -26,9 +26,8 @@ namespace SophiApp.Helpers
 
         private void Initializing() => Conditions = new List<IStartupCondition>()
         {
-            new OsVersionCondition(), new OsBuildVersionCondition(), new OsFilesCorruptedCondition(), new RebootRequiredCondition(),
-            new SingleInstanceCondition(), new SingleAdminSessionCondition(), new Win10TweakerCondition(), new SycnexScriptCondition(),
-            new DefenderCorruptedCondition(), new NewVersionCondition()
+            new RebootRequiredCondition(), new SingleInstanceCondition(), new SingleAdminSessionCondition(),
+            new Win10TweakerCondition(), new SycnexScriptCondition(), new NewVersionCondition()
         };
 
         internal async Task CheckAsync()
