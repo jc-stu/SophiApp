@@ -1,6 +1,8 @@
 name: Build
 
-on: 
+on:
+  workflow_dispatch:
+
   push:
     tags:
       - "*"
@@ -103,10 +105,16 @@ jobs:
         # https://en.wikipedia.org/wiki/Percent-encoding
         Add-Content -Path $env:GITHUB_OUTPUT -Value "ReleaseBody=ReleaseNotesTemplate.md"
 
-    - name: Uploading
-      uses: softprops/action-gh-release@master
+#   - name: Uploading
+#     uses: softprops/action-gh-release@master
+#     with:
+#       name: ${{ github.ref_name }}
+#       token: ${{ github.token }}
+#       files: SophiApp.zip
+#       body_path: ${{ steps.read_release.outputs.ReleaseBody }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.ref_name }}
-        token: ${{ github.token }}
-        files: SophiApp.zip
-        body_path: ${{ steps.read_release.outputs.ReleaseBody }}
+        name: SophiApp
+        path: SophiApp.zip
