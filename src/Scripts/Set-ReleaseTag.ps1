@@ -17,6 +17,10 @@ $Parameters = @{
 }
 
 $ReleaseTag          = $args[0].Split("/") | Select-Object -Last 1
+if (!$ReleaseTag.contains('.'))
+{
+	$ReleaseTag      = '0.0.0.0'
+}
 $AssemblyString      = '[assembly: AssemblyVersion("{0}")]' -f $ReleaseTag
 $AssemblyFileString  = '[assembly: AssemblyFileVersion("{0}")]' -f $ReleaseTag
 
